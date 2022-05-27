@@ -24,13 +24,50 @@ export default class ShoppingCart extends Component {
                             // id={prod.id}
                             // carName={prod.carName}
                             // price={prod.price}
-                            product={prod} 
-                        />;
+                            product={prod}
+                            onIncrement={this.handleIncrement}
+                            onDecrement={this.handleDecrement} 
+
+                        >
+                            <button className="btn btn-primary">Buy Now</button>
+                        </Product>;
                     })};
 
                 </div>
-            </div>
+            </div> 
         );
 
+    };
+
+    // All rendering functions go down here
+    handleIncrement = (product, maxValue) => {
+        // getting products base on index
+        let allProducts = [...this.state.products];
+        let index = allProducts.indexOf(product);
+        console.log(allProducts[index]);
+
+        if(allProducts[index].quantity < maxValue) {
+        allProducts[index].quantity++;
+
+        //update the quantity holder in parent component state
+        this.setState({ products: allProducts});
+        }
+        // console.log("handleIncrement", product)
+        //  product.quantity= product.quantity+1
+  
+    };
+
+    handleDecrement = (product, minValue) => {
+        let allProducts = [...this.state.products];
+        let index = allProducts.indexOf(product);
+        console.log(allProducts[index]);
+
+        if(allProducts[index].quantity > minValue) {
+        allProducts[index].quantity--;
+         
+        this.setState({ products: allProducts });
+        }
+        // console.log("handleDecrement", product)
+        // product.quantity = product.quantity - 1
     };
 }
