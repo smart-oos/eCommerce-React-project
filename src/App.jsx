@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
-import MainContent from "./MainContent";
+// import CustomersList from "./CustomersList";
+import ShoppingCart from "./ShoppingCart";
 
 export default class App extends Component {
-    render(){
-        return(
+    render() {
+        return (
             <React.Fragment>
                 <NavBar></NavBar>
-                <MainContent></MainContent>
+                <ShoppingCart></ShoppingCart>
+                {/* <CustomersList></CustomersList> */}
             </React.Fragment>
         );
     }

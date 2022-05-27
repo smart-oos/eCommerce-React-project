@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import pic from "./automartLogo.png";
 
-export default class MainContent extends Component {
+export default class CustomersList extends Component {
     state = {
         appTitle: "Customers",
         customersCount: 13,
@@ -10,45 +10,45 @@ export default class MainContent extends Component {
                 id: 1,
                 name: "Smart",
                 phone: "666-678",
-                address:{city:"Oshogbo"},
+                address: { city: "Oshogbo" },
                 photo: pic
             },
             {
                 id: 2,
                 name: "Aishat",
                 phone: "111-678",
-                address:{city:"Ibadan"},
+                address: { city: "Ibadan" },
                 photo: pic
             },
             {
                 id: 3,
                 name: "Luck",
                 phone: null,
-                address: {city:"Gotham"},
+                address: { city: "Gotham" },
                 photo: pic
             },
             {
                 id: 4,
                 name: "Aina",
                 phone: null,
-                address:{city: "Awo Hall, Ile-Ife"},
+                address: { city: "Awo Hall, Ile-Ife" },
                 photo: pic
             },
             {
                 id: 5,
                 name: "Sam",
                 phone: "678-678",
-                address:{city: "Asolo"},
-                photo: pic           
-             }
+                address: { city: "Asolo" },
+                photo: pic
+            }
         ],
     };
 
-// customerNameStyle=(custName)=>{
+    // customerNameStyle=(custName)=>{
     // if (custName.startsWith("S")) return "red-highlight border-left";
     // else if (custName.startsWith("A")) return "green-highlight border-right";
     // else return{};
-// };
+    // };
 
     render() {
         return (
@@ -79,40 +79,45 @@ export default class MainContent extends Component {
     }
 
     //Rendering Method for the cust.phone
-    getPhoneToRender =(phone) => {
-       if(phone) return phone;
-        else{
-            return <div className="bg-warning p-1 text-center">No Phone</div>;       
+    getPhoneToRender = (phone) => {
+        if (phone) return phone;
+        else {
+            return <div className="bg-warning p-1 text-center">No Phone</div>;
         }
     }
 
-    //Reder CustomerRow...
-    getCustomerRow = ()=> {
+    //Render CustomerRow...
+    getCustomerRow = () => {
         return this.state.customers.map((cust, index) => {
             return (
                 <tr key={cust.id}>
                     <td>{cust.id}</td>
                     <td>
-                        <img src={cust.photo} alt="Customer pics" btn-sm/>
+                        <img src={cust.photo} alt="Customer pics" btn-sm />
                         <div>
-                            <button className="btn btn-sm btn-secondary" onClick={() => {this.onChangePictureClick(cust, index);}}>Change Picture</button>
+                            <button className="btn btn-sm btn-secondary" onClick={() => { this.onChangePictureClick(cust, index); }}>Change Picture</button>
                         </div>
                     </td>
                     <td>{cust.name}</td>
                     <td>{this.getPhoneToRender(cust.phone)}</td>
                     <td>{cust.address.city}</td>
                 </tr>);
-            });
-        };
+        });
+    };
 
- onChangePictureClick = (cust, index) => {
-            // console.log(cust);
-            // console.log(index);
+    // Executes when the user clicks on 'Change Picture' button in the image grid
+    // This receives the "customer" object and index of the currently clicked customer
+    onChangePictureClick = (cust, index) => {
+        // console.log(cust);
+        // console.log(index);
 
+        //getting existing customers
         var custArr = this.state.customers;
         custArr[index].photo = "https://picsum.photo/id/104/60";
-        
-        this.setState({customers: custArr}); 
-        }; 
+
+        //update "customers" array in the state
+        this.setState({ customers: custArr });
+    };
 
 }
+ 
